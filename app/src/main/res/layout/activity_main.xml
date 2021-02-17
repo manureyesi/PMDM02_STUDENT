@@ -81,10 +81,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:srcCompat="@drawable/puente_romano_puentevea" />
+            android:src="@drawable/puente_romano_puentevea" />
 
         <View
             android:layout_width="fill_parent"
