@@ -69,7 +69,7 @@
             android:background="@color/black"/>
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerProvincias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/provincias_array" />
@@ -84,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:tag="@string/text_image"
             android:src="@drawable/puente_romano_puentevea" />
 
         <View
