@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imagenMonumento;
     private Spinner listaProvincias;
 
-    private Boolean esPrimerInicio;
+    public static Boolean esPrimerInicio;
     private Boolean esStartCronometro;
 
     @Override
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         cronometro = findViewById(R.id.cronometro);
 
         imagenMonumento = findViewById(R.id.imageViewMonumento);
+        imagenMonumento.setOnClickListener(this::onclickImagenMonumento);
 
         listaProvincias = findViewById(R.id.spinnerProvincias);
 
@@ -73,14 +74,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 final String TAG = "onItemSelected:";
-                String provincia = listaProvincias.getSelectedItem().toString();
-                // Comprobamos si la provincia es de galicia
-                if (Arrays.asList(getResources().getStringArray(R.array.provincias_gallegas_array)).contains(provincia)) {
-                    Log.i(TAG, "La provincia seleccionada es Gallega");
-                    Toast.makeText(MainActivity.this,R.string.text_toast_gal,Toast.LENGTH_LONG).show();
+                if (MainActivity.esPrimerInicio) {
+                    Log.i(TAG, "No mostramos el Toast porque acabamos de entrar en la APP");
+                    MainActivity.esPrimerInicio = Boolean.FALSE;
                 } else {
-                    Log.i(TAG, "La provincia seleccionada NO es Gallega");
-                    Toast.makeText(MainActivity.this,R.string.text_toast_no_gal,Toast.LENGTH_LONG).show();
+                    String provincia = listaProvincias.getSelectedItem().toString();
+                    // Comprobamos si la provincia es de galicia
+                    if (Arrays.asList(getResources().getStringArray(R.array.provincias_gallegas_array)).contains(provincia)) {
+                        Log.i(TAG, "La provincia seleccionada es Gallega");
+                        Toast.makeText(MainActivity.this, R.string.text_toast_gal, Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.i(TAG, "La provincia seleccionada NO es Gallega");
+                        Toast.makeText(MainActivity.this, R.string.text_toast_no_gal, Toast.LENGTH_LONG).show();
+                    }
                 }
             }
 
@@ -131,6 +137,17 @@ public class MainActivity extends AppCompatActivity {
                             : StringUtils.SPACE.concat(this.editTextPrincipal.getText().toString())
                     : StringUtils.EMPTY);
         }
+    }
+
+    /**
+     * Evento on click para imagen monumento
+     * @param view
+     */
+    private void onclickImagenMonumento(View view) {
+        final String TAG = "onclickImagenMonumento:";
+        Log.i(TAG, "Se hace click en la img");
+        Toast.makeText(MainActivity.this,R.string.text_image,Toast.LENGTH_LONG).show();
+
     }
 
     /**
