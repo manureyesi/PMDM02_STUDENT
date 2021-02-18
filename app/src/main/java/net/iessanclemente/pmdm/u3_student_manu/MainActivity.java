@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.iessanclemente.pmdm.utiles.Constantes;
 import net.iessanclemente.pmdm.utiles.Utiles;
 
 import org.apache.commons.lang3.StringUtils;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imagenMonumento;
     private Spinner listaProvincias;
 
-    public static Boolean esPrimerInicio;
+    private Boolean esPrimerInicio;
     private Boolean esStartCronometro;
 
     @Override
@@ -74,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 final String TAG = "onItemSelected:";
-                if (MainActivity.esPrimerInicio) {
+                if (esPrimerInicio) {
                     Log.i(TAG, "No mostramos el Toast porque acabamos de entrar en la APP");
-                    MainActivity.esPrimerInicio = Boolean.FALSE;
+                    esPrimerInicio = Boolean.FALSE;
                 } else {
                     String provincia = listaProvincias.getSelectedItem().toString();
                     // Comprobamos si la provincia es de galicia
@@ -96,6 +97,24 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "No se seleciona ninguna provincia");
             }
         });
+
+        // Cronometro
+        cronometro.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                final String TAG = "onChronometerTick:";
+
+                long tiempoPasado = SystemClock.elapsedRealtime() - chronometer.getBase();
+                int tiempoSeg = (int) tiempoPasado / Constantes.CALCULO_ML_TO_S;
+                if (Constantes.TIEMPO_AUTODESTRUCCION_APP.equals(tiempoSeg)) {
+                    Log.i(TAG, "Se cierra la aplicación porque pasaron los ".concat(Constantes.TIEMPO_AUTODESTRUCCION_APP.toString()).concat(" segundos del cronometro."));
+                    finish();
+                }
+
+
+            }
+        });
+
     }
 
     @Override
