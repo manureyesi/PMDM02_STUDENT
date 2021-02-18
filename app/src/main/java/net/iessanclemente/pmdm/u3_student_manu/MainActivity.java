@@ -39,10 +39,16 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imagenMonumento;
     private Spinner listaProvincias;
 
+    private Boolean esPrimerInicio;
+    private Boolean esStartCronometro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        esPrimerInicio = Boolean.FALSE;
+        esStartCronometro = Boolean.TRUE;
 
         // Primera seccion
         editTextPrincipal = findViewById(R.id.editTextTextPersonName);
@@ -116,12 +122,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (this.checkBoxClear.isChecked()) {
             // Limpiar texto
-            this.textLabel.setText(StringUtils.isNotBlank(this.editTextPrincipal.getText())
-                    ? Utiles.toUpperCaseFrase(this.editTextPrincipal.getText().toString())
-                    : StringUtils.EMPTY);
+            this.textLabel.setText(StringUtils.EMPTY);
         } else {
-            this.textLabel.append(StringUtils.isNotBlank(this.editTextPrincipal.getText())
-                    ? StringUtils.SPACE.concat(this.editTextPrincipal.getText().toString())
+            this.textLabel.append(
+                    StringUtils.isNotBlank(this.editTextPrincipal.getText())
+                    ? StringUtils.isBlank(this.textLabel.getText())
+                            ? Utiles.toUpperCaseFrase(this.editTextPrincipal.getText().toString())
+                            : StringUtils.SPACE.concat(this.editTextPrincipal.getText().toString())
                     : StringUtils.EMPTY);
         }
     }
@@ -132,8 +139,18 @@ public class MainActivity extends AppCompatActivity {
      */
     private void onClickCronometro(View view) {
 
-        this.cronometro.setBase(SystemClock.elapsedRealtime());
-        this.cronometro.start();
+        // Comprobar estado cronometro
+        if (this.esStartCronometro) {
+            this.cronometro.setBase(SystemClock.elapsedRealtime());
+            this.cronometro.start();
+            this.botonCronometro.setText(R.string.text_stop);
+            this.esStartCronometro = Boolean.FALSE;
+        } else {
+            this.cronometro.stop();
+            this.cronometro.setBase(SystemClock.elapsedRealtime());
+            this.botonCronometro.setText(R.string.text_start);
+            this.esStartCronometro = Boolean.TRUE;
+        }
 
     }
 }
