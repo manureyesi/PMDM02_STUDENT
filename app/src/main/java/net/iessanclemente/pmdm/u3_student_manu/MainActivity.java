@@ -1,7 +1,6 @@
 package net.iessanclemente.pmdm.u3_student_manu;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.res.Configuration;
 import android.graphics.Color;
