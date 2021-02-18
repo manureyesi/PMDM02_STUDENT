@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="provincias_gallegas_array">
-        <item>A Coruña</item>
-        <item>Lugo</item>
-        <item>Ourense</item>
-        <item>Pontevedra</item>
-    </string-array>
-</resources>
