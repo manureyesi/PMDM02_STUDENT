@@ -2,7 +2,6 @@ package net.iessanclemente.pmdm.u3_student_manu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
