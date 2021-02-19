@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_text_hint"
+            android:ems="10"
+            android:hint="@string/text_hint"
+            android:inputType="textPersonName" />
+
+        <CheckBox
+            android:id="@+id/checkBoxClear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_clear" />
+
+        <Button
+            android:id="@+id/buttonAddClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/text_button" />
+
+        <TextView
+            android:id="@+id/textLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_label"
+            android:textColor="@color/color_text_label_red" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radioButtonRed"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/text_red" />
+
+            <RadioButton
+                android:id="@+id/radioButtonBlue"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/text_blue" />
+
+        </RadioGroup>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"/>
+
+        <Spinner
+            android:id="@+id/spinnerProvincias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/provincias_array" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"/>
+
+        <Chronometer
+            android:id="@+id/cronometro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buttonCronometro"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/text_start" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
