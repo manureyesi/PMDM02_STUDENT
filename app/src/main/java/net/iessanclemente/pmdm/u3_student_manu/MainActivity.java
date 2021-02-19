@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        esPrimerInicio = Boolean.FALSE;
+        esPrimerInicio = Boolean.TRUE;
         esStartCronometro = Boolean.TRUE;
 
         // Primera seccion
@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         cronometro = findViewById(R.id.cronometro);
 
         imagenMonumento = findViewById(R.id.imageViewMonumento);
-        imagenMonumento.setOnClickListener(this::onclickImagenMonumento);
+        if (imagenMonumento != null) {
+            imagenMonumento.setOnClickListener(this::onclickImagenMonumento);
+        }
 
         listaProvincias = findViewById(R.id.spinnerProvincias);
 
@@ -111,24 +113,8 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }
 
-
             }
         });
-
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        final String TAG = "onConfigurationChanged:";
-
-        //check config
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Log.i(TAG, "Ocultar imagen al modificar orientacion");
-            imagenMonumento.setVisibility(View.INVISIBLE);
-        } else {
-            Log.i(TAG, "Mostrar imagen al modificar orientacion");
-            imagenMonumento.setVisibility(View.VISIBLE);
-        }
 
     }
 
